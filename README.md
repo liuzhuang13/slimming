@@ -6,15 +6,25 @@ The code is based on [fb.resnet.torch](https://github.com/facebook/fb.resnet.tor
 
 Code will be cleand up soon with instructions provided.
 
+Citation:
 
-##Introduction
+	@inproceedings{Liu2017learning,
+		title = {Learning Efficient Convolutional Networks through Network Slimming},
+		author = {Liu, Zhuang and Li, Jianguo and Shen, Zhiqiang and Huang, Gao and Yan, Shoumeng and Zhang, Changshui},
+		booktitle = {ICCV},
+		year = {2017}
+	}
+
+
+
+## Introduction
 
 
 Network Slimming is a neural network training scheme that can simultaneously reduces the model size, run-time memory, computing operations while introducing no accuracy loss to and minimum overhead to the training process, and the resulting models require no special libraries/hardware for efficient inference.
 
 
 
-##Approach
+## Approach
 <div align=center>
 <img src="https://user-images.githubusercontent.com/8370623/29604272-d56a73f4-879b-11e7-80ea-0702de6bd584.jpg" width="740">
 </div>
@@ -45,7 +55,7 @@ The dotted line is for the multi-pass version of the procedure.
 </div> 
 
 
-##Usage
+## Usage
 This repo holds the example code for VGGNet on CIFAR-10 datasets. 
 
 To run the example, simply type 
@@ -56,7 +66,7 @@ To run the example, simply type
   
 Detailed instructions and explanations will be provided later.
 
-##Contact
+## Contact
 liuzhuangthu at gmail.com
 
 
