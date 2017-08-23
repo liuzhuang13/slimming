@@ -4,8 +4,6 @@ Example code for the paper [Learning Efficient Convolutional Networks through Ne
 
 The code is based on [fb.resnet.torch](https://github.com/facebook/fb.resnet.torch).
 
-Code will be cleand up soon with instructions provided.
-
 Citation:
 
 	@inproceedings{Liu2017learning,
@@ -20,7 +18,7 @@ Citation:
 ## Introduction
 
 
-Network Slimming is a neural network training scheme that can simultaneously reduces the model size, run-time memory, computing operations while introducing no accuracy loss to and minimum overhead to the training process, and the resulting models require no special libraries/hardware for efficient inference.
+Network Slimming is a neural network training scheme that can simultaneously reduces the model size, run-time memory, computing operations, while introducing no accuracy loss to and minimum overhead to the training process. The resulting models require no special libraries/hardware for efficient inference.
 
 
 
@@ -35,13 +33,14 @@ Figure 1:
 </div> 
 
 
-
+<br>
 
 We associate a scaling factor (reused from batch normalization layers) with each channel in convolutional layers. Sparsity
 regularization is imposed on these scaling factors during training to automatically identify unimportant channels. The channels with small
 scaling factor values (in orange color) will be pruned (left side). After pruning, we obtain compact models (right side), which are then
 fine-tuned to achieve comparable (or even higher) accuracy as normally trained full network.
 
+<br>
 
 
 <div align=center>
@@ -49,14 +48,12 @@ fine-tuned to achieve comparable (or even higher) accuracy as normally trained f
 </div>
 
 <div align=center>
-Figure 2: Flow-chart of the network slimming procedure. 
-
-The dotted line is for the multi-pass version of the procedure.
+Figure 2: Flow-chart of the network slimming procedure. The dotted line is for the multi-pass version of the procedure.
 </div> 
 
 
 ## Usage
-This repo holds the example code for VGGNet on CIFAR-10 datasets. 
+This repo holds the example code for VGGNet on CIFAR-10 dataset. Code will be cleand up to be more clear soon.
 
 To run the example, simply type 
 
@@ -64,7 +61,7 @@ To run the example, simply type
   sh example.sh
   ```
   
-Detailed instructions and explanations will be provided later.
+More detailed instructions are included as comment in the file example.sh.
 
 ## Contact
 liuzhuangthu at gmail.com

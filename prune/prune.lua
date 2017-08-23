@@ -4,9 +4,7 @@ require 'cudnn'
 require 'saveTXT'
 
 opt = lapp[[
-	--path   (default 'results/1115_all0.5_0.00001')
-	--iter 	 (default '160')
-	--per    (default 0.5)
+	--percent    (default 0.5)
 	--model  (default '')
 	--save   (default '')
 ]]
@@ -35,7 +33,7 @@ end
 
 print(bn:size())
 y, i = torch.sort(bn)
-thre_index = math.floor(total * opt.per)
+thre_index = math.floor(total * opt.percent)
 thre = y[thre_index]
 
 
@@ -57,7 +55,7 @@ end
 
 pruned_ratio = pruned/total
 
-print('threshold: '..thre)
-print('pruned: '..pruned_ratio)
+-- print('threshold: '..thre)
+-- print('pruned: '..pruned_ratio)
 
 torch.save(opt.save, model)

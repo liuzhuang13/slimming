@@ -6,12 +6,7 @@ opt = lapp[[
   --model        (default cifar)
   --save         (default iamastring)
 ]]
-print(opt.model..'haha')
-print(opt.save..'hehe')
 
-
--- model1 = torch.load('results/1208_vgg_0.0001_used/pruned/model_160_0.6.t7')
--- print(opt.model)
 model1 = torch.load(opt.model)
 bn_index = {2, 5, 9, 12, 16, 19, 22, 25, 29, 32, 35, 38, 42, 45, 48, 51}
 channel_index = {}
