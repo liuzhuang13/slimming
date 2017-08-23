@@ -48,7 +48,6 @@ function CifarDataset:preprocess()
          t.HorizontalFlip(0.5),
          t.RandomCrop(32, 4),
       }
-
    elseif self.split == 'val' then
       return t.ColorNormalize(meanstd)
    else

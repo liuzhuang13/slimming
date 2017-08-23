@@ -26,11 +26,7 @@ function Trainer:__init(model, criterion, opt, optimState)
       weightDecay = opt.weightDecay,
    }
    self.opt = opt
-   -- print('getting params')
    self.params, self.gradParams = model:getParameters()
-   self.mask = (1 - self.params:float():eq(0)):cuda()
-   -- print('getting finish')
-
 
 end
 
@@ -42,7 +38,7 @@ function Trainer:train(epoch, dataloader)
    local dataTimer = torch.Timer()
 
    local function feval()
-      return self.criterion.output, self.gradParams:cmul(self.mask)
+      return self.criterion.output, self.gradParams
    end
 
    local trainSize = dataloader:size()
@@ -66,7 +62,6 @@ function Trainer:train(epoch, dataloader)
       self.criterion:backward(self.model.output, self.target)
       self.model:backward(self.input, self.criterion.gradInput)
       
-      -- print(torch.sum(self.mask))
 
       optim.sgd(feval, self.params, self.optimState)
 
@@ -175,14 +170,11 @@ function Trainer:learningRate(epoch)
       decay = math.floor((epoch - 1) / 30)
    elseif self.opt.dataset == 'cifar10' then
       decay = epoch >= self.opt.nEpochs*0.75 and 2 or epoch >= self.opt.nEpochs*0.5 and 1 or 0
-      -- decay = 2
    elseif self.opt.dataset == 'cifar100' then
-      -- decay = epoch >= 122 and 2 or epoch >= 81 and 1 or 0
       decay = epoch >= self.opt.nEpochs*0.75 and 2 or epoch >= self.opt.nEpochs*0.5 and 1 or 0
    elseif self.opt.dataset == 'mnist' then
       decay = epoch >= self.opt.nEpochs*0.75 and 2 or epoch >= self.opt.nEpochs*0.5 and 1 or 0
    end
-   
    return self.opt.LR * math.pow(0.1, decay)
 end
 

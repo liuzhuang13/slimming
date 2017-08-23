@@ -63,8 +63,6 @@ function M.parse(arg)
    opt.shareGradInput = opt.shareGradInput ~= 'false'
    opt.optnet = opt.optnet ~= 'false'
    opt.resetClassifier = opt.resetClassifier ~= 'false'
-   opt.constant = opt.constant ~= 'false'
-   print(opt.constant)
 
    opt.uniform = opt.uniform ~= 'false'
 
