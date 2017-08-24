@@ -1,7 +1,6 @@
 require 'nn'
 require 'cunn'
 require 'cudnn'
-require 'saveTXT'
 
 opt = lapp[[
 	--percent    (default 0.5)
@@ -10,7 +9,6 @@ opt = lapp[[
 ]]
 print(opt)
 
--- model = torch.load(opt.path..'/model_'..opt.iter..'.t7'):cuda()
 model = torch.load(opt.model)
 model:cuda()
 name = 'cudnn.SpatialBatchNormalization'
@@ -31,7 +29,6 @@ for k, v in pairs(model:findModules(name)) do
 	index = index + size
 end
 
-print(bn:size())
 y, i = torch.sort(bn)
 thre_index = math.floor(total * opt.percent)
 thre = y[thre_index]
@@ -48,14 +45,13 @@ for k,v in pairs(model:findModules(name)) do
 	v.weight:cmul(mask) 
 	v.bias:cmul(mask)
 
-	-- print('total: ', mask:size(1))
-	-- print('sum: ', torch.sum(mask))
-	-- print(v.weight)
+	print('layer index: ', k)
+	print('total channel: ', mask:size(1))
+	print('remaining channel: ', torch.sum(mask), '\n')
 end
 
 pruned_ratio = pruned/total
 
--- print('threshold: '..thre)
--- print('pruned: '..pruned_ratio)
-
 torch.save(opt.save, model)
+
+print('Successful!')

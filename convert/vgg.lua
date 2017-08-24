@@ -3,24 +3,21 @@ require 'cunn'
 require 'cudnn'
 
 opt = lapp[[
-  --model        (default cifar)
-  --save         (default iamastring)
+  --model        (default '')
+  --save         (default '')
 ]]
 
 model1 = torch.load(opt.model)
 bn_index = {2, 5, 9, 12, 16, 19, 22, 25, 29, 32, 35, 38, 42, 45, 48, 51}
 channel_index = {}
 for i = 1, #bn_index do
-  -- print(bn_index[i])
   bn = model1:get(bn_index[i])
   channel_index[i] = torch.nonzero(bn.weight:resize(bn.weight:size()[1]):float())
-  -- print(channel_index[i])
-  print(channel_index[i]:nElement())
+  -- print(channel_index[i]:nElement())
   channel_index[i]:resize(channel_index[i]:size()[1])
 end
 
 model = nn.Sequential()
-
 
 current = 1
  -- building block
@@ -65,7 +62,6 @@ current = 1
 
  local function Group(ni, no, N, f)
     for i=1,N do
-       -- Block(width[i], width[i+1])
        Block(i == 1 and ni or no, no)
     end
     if f then f() end
@@ -86,5 +82,7 @@ current = 1
  model:cuda()
 
 torch.save(opt.save, model)
+
+print('Conversion is successful!')
 
 

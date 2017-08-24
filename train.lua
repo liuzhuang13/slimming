@@ -61,6 +61,8 @@ function Trainer:train(epoch, dataloader)
       self.criterion:backward(self.model.output, self.target)
       self.model:backward(self.input, self.criterion.gradInput)
 
+      self:updateBN()
+
       optim.sgd(feval, self.params, self.optimState)
 
       local top1, top5 = self:computeScore(output, sample.target, 1)
@@ -81,6 +83,24 @@ function Trainer:train(epoch, dataloader)
 
    return top1Sum / N, top5Sum / N, lossSum / N
 end
+
+----------------------------------------------------------------------------------------
+-- add subgradient (sign function) on one BN layer 
+function Trainer:gradientBN(weight, gradWeight)
+   local S = self.opt.S
+   local subgradient = S*torch.sign(weight)
+   gradWeight:add(subgradient)
+end
+
+-- additional subgradient descent on the sparsity-induced penalty term
+function Trainer:updateBN()
+   local name = 'cudnn.SpatialBatchNormalization'
+   for k, v in pairs(self.model:findModules(name)) do
+         self:gradientBN(v.weight, v.gradWeight)
+   end
+end
+----------------------------------------------------------------------------------------
+
 
 function Trainer:test(epoch, dataloader)
    -- Computes the top-1 and top-5 err on the validation set
@@ -167,9 +187,11 @@ function Trainer:learningRate(epoch)
    if self.opt.dataset == 'imagenet' then
       decay = math.floor((epoch - 1) / 30)
    elseif self.opt.dataset == 'cifar10' then
-      decay = epoch >= 122 and 2 or epoch >= 81 and 1 or 0
+      decay = epoch >= self.opt.nEpochs*0.75 and 2 or epoch >= self.opt.nEpochs*0.5 and 1 or 0
    elseif self.opt.dataset == 'cifar100' then
-      decay = epoch >= 122 and 2 or epoch >= 81 and 1 or 0
+      decay = epoch >= self.opt.nEpochs*0.75 and 2 or epoch >= self.opt.nEpochs*0.5 and 1 or 0
+   elseif self.opt.dataset == 'mnist' then
+      decay = epoch >= self.opt.nEpochs*0.75 and 2 or epoch >= self.opt.nEpochs*0.5 and 1 or 0
    end
    return self.opt.LR * math.pow(0.1, decay)
 end

@@ -53,19 +53,11 @@ local meanstd = {
 }
 
 function CifarDataset:preprocess()
-   if self.split == 'train' and self.opt.da > 0 then
+   if self.split == 'train' then
       return t.Compose{
          t.ColorNormalize(meanstd),
          t.HorizontalFlip(0.5),
          t.RandomCrop(32, 4),
-      }
-
-   elseif self.split == 'train' then
-      print('no data augmentation during training')
-      return t.Compose{
-         t.ColorNormalize(meanstd),
-         -- t.HorizontalFlip(0.5),
-         -- t.RandomCrop(32, 4),
       }
    elseif self.split == 'val' then
       return t.ColorNormalize(meanstd)

@@ -22,7 +22,6 @@ torch.setnumthreads(1)
 
 local opt = opts.parse(arg)
 model = torch.load(opt.retrain)
-print(model)
 torch.manualSeed(opt.manualSeed)
 cutorch.manualSeedAll(opt.manualSeed)
 
@@ -31,14 +30,10 @@ local checkpoint, optimState = checkpoints.latest(opt)
 
 -- Create model
 local model, criterion = models.setup(opt, checkpoint)
--- p, g = model:getParameters()
 -- Data loading
 local trainLoader, valLoader = DataLoader.create(opt)
 -- The trainer handles the training loop and evaluation on validation set
 local trainer = Trainer(model, criterion, opt, optimState)
--- size = trainer.model:getParameters():size()
--- size = p:size()[1]
-all_results = {}
 
 local startEpoch = checkpoint and checkpoint.epoch + 1 or opt.epochNumber
 local bestTop1 = math.huge
