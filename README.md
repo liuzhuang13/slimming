@@ -18,7 +18,7 @@ Citation:
 ## Introduction
 
 
-Network Slimming is a neural network training scheme that can simultaneously reduces the model size, run-time memory, computing operations, while introducing no accuracy loss to and minimum overhead to the training process. The resulting models require no special libraries/hardware for efficient inference.
+Network Slimming is a neural network training scheme that can simultaneously reduce the model size, run-time memory, computing operations, while introducing no accuracy loss to and minimum overhead to the training process. The resulting models require no special libraries/hardware for efficient inference.
 
 
 
@@ -53,7 +53,7 @@ Figure 2: Flow-chart of the network slimming procedure. The dotted line is for t
 
 
 ## Usage
-This repo holds the example code for VGGNet on CIFAR-10 dataset. Code will be cleand up to be more clear soon.
+This repo holds the example code for VGGNet on CIFAR-10 dataset. 
 
 To run the example, simply type 
 
@@ -61,7 +61,7 @@ To run the example, simply type
   sh example.sh
   ```
   
-More detailed instructions are included as comment in the file example.sh.
+More detailed instructions are included as comments in the file example.sh.
 
 ## Contact
 liuzhuangthu at gmail.com
