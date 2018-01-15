@@ -1,6 +1,10 @@
 # Network Slimming
 
-Example code for the paper [Learning Efficient Convolutional Networks through Network Slimming](https://arxiv.org/abs/1708.06519) (In ICCV 2017).
+This repository contains the code for the following paper 
+
+[Learning Efficient Convolutional Networks through Network Slimming](http://openaccess.thecvf.com/content_ICCV_2017/papers/Liu_Learning_Efficient_Convolutional_ICCV_2017_paper.pdf) (ICCV 2017).
+
+[Zhuang Liu](https://liuzhuang13.github.io/), [Jianguo Li](https://sites.google.com/site/leeplus/), [Zhiqiang Shen](http://zhiqiangshen.com), [Gao Huang](http://www.cs.cornell.edu/~gaohuang/), [Shoumeng Yan](https://scholar.google.com/citations?user=f0BtDUQAAAAJ&hl=en), [Changshui Zhang](http://bigeye.au.tsinghua.edu.cn/english/Introduction.html).
 
 The code is based on [fb.resnet.torch](https://github.com/facebook/fb.resnet.torch).
 
