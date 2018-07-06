@@ -8,7 +8,7 @@ This repository contains the code for the following paper
 
 The code is based on [fb.resnet.torch](https://github.com/facebook/fb.resnet.torch).
 
-We have now released another [[PyTorch implementation]] (https://github.com/Eric-mingjie/network-slimming) which supports ResNet and DenseNet, based on Qiang Wang's Pytorch implementation listed below.
+We have now released another [[PyTorch implementation]](https://github.com/Eric-mingjie/network-slimming) which supports ResNet and DenseNet, based on Qiang Wang's Pytorch implementation listed below.
 
 Other Implementations:
 [[Pytorch]](https://github.com/foolwood/pytorch-slimming) by Qiang Wang, [[Chainer]](https://github.com/dsanno/chainer-slimming) by Daiki Sanno.
