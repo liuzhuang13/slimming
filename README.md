@@ -61,8 +61,6 @@ Figure 2: Flow-chart of the network slimming procedure. The dotted line is for t
 
 
 ## Example Usage
-<<<<<<< HEAD
-  
   
 This repo holds the example code for VGGNet on CIFAR-10 dataset. 
 
@@ -127,9 +125,6 @@ th convert/vgg.lua -model vgg_cifar10/pruned/model_160_0.7.t7 -save vgg_cifar10/
 ```
 th main_fine_tune.lua -retrain vgg_cifar10/converted/model_160_0.7.t7 -save vgg_cifar10/fine_tune/
 ```
-
->>>>>>> 12b1e517eda3f5a499cdd0cdd5011a8ce066a576
-The script for the whole procedure is included in the file example.sh.
 
 ## Contact
 liuzhuangthu at gmail.com
