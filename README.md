@@ -11,7 +11,10 @@ The code is based on [fb.resnet.torch](https://github.com/facebook/fb.resnet.tor
 We have now released another [[PyTorch implementation]](https://github.com/Eric-mingjie/network-slimming) which supports ResNet and DenseNet, based on Qiang Wang's Pytorch implementation listed below.
 
 Other Implementations:
-[[Pytorch]](https://github.com/foolwood/pytorch-slimming) by Qiang Wang, [[Chainer]](https://github.com/dsanno/chainer-slimming) by Daiki Sanno.
+[[Pytorch]](https://github.com/foolwood/pytorch-slimming) by Qiang Wang.
+[[Chainer]](https://github.com/dsanno/chainer-slimming) by Daiki Sanno.
+[[Pytorch hand detection using YOLOv3]](https://github.com/Lam1360/YOLOv3-model-pruning) by Lam1360.
+[[Pytorch object detection using YOLOv3]](https://github.com/talebolano/yolov3-network-slimming) by talebolano.
 
 
 Citation:
@@ -92,6 +95,8 @@ th convert/vgg.lua -model vgg_cifar10/pruned/model_160_0.7.t7 -save vgg_cifar10/
 ```
 th main_fine_tune.lua -retrain vgg_cifar10/converted/model_160_0.7.t7 -save vgg_cifar10/fine_tune/
 ```
+## Note 
+The original paper has a bug on the VGG results on ImageNet (Table 2). Please refer to this [[issue]](https://github.com/Eric-mingjie/rethinking-network-pruning/issues/3#issuecomment-443913400). The correct result was presented in Table 4 of [this paper](https://arxiv.org/abs/1810.05270).
 
 ## Contact
 liuzhuangthu at gmail.com
